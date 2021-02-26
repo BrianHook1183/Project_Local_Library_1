@@ -1,6 +1,9 @@
 // Note: Please do not change the name of the functions. The tests use those names to validate your code.
 
-function findAccountById(accounts, id) {}
+// *returns the account object that has the matching ID
+function findAccountById(accounts, id) {
+  return accounts.find(account => account.id === id);
+}
 
 function sortAccountsByLastName(accounts) {}
 
