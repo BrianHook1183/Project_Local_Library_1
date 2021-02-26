@@ -5,7 +5,10 @@ function findAccountById(accounts, id) {
   return accounts.find(account => account.id === id);
 }
 
-function sortAccountsByLastName(accounts) {}
+// *returns a sorted array of objects. The objects are sorted alphabetically by last name.
+function sortAccountsByLastName(accounts) {
+  return accounts.sort((a, b) => a.name.last.toLowerCase() > b.name.last.toLowerCase() ? 1 : -1);
+}
 
 function getTotalNumberOfBorrows(account, books) {}
 
