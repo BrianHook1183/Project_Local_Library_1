@@ -1,6 +1,9 @@
 // Note: Please do not change the name of the functions. The tests use those names to validate your code.
 
-function findAuthorById(authors, id) {}
+// *returns the author object that has the matching ID
+function findAuthorById(authors, id) {
+  return authors.find(author => author.id === id);
+}
 
 function findBookById(books, id) {}
 
