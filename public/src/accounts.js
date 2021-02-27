@@ -1,3 +1,5 @@
+const booksFunction = require('./books');
+
 // Note: Please do not change the name of the functions. The tests use those names to validate your code.
 
 // *returns the account object that has the matching ID
@@ -58,7 +60,10 @@ function getBooksPossessedByAccount(account, books, authors) {
   // inserts the author object into the book object as a new key/value pair
   return booksPossessedByAccount.map(book => {
     // finds the author object with matching id
-    let author = authors.find(author => author.id === book.authorId);
+      // ?using function from books.js as a helper function
+    let author = booksFunction.findAuthorById(authors, book.authorId);
+      // ?if I didn't use the helper functions:
+    // *let author = authors.find(author => author.id === book.authorId);
     // object shorthand and spread operator. Takes each book and adds new key "author" with the value that was just stored.
     return {...book, author};
   });
