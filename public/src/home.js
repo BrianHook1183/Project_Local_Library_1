@@ -1,4 +1,4 @@
-const booksFunctions = require('./books');
+const booksFunctions = require("./books");
 
 // Note: Please do not change the name of the functions. The tests use those names to validate your code.
 
@@ -14,8 +14,7 @@ function getTotalAccountsCount(accounts) {
 // *returns a number that represents the number of books that are currently checked out of the library.
 function getBooksBorrowedCount(books) {
   // reuses function from books.js that partitions books into borrowed and available
-  return booksFunctions.partitionBooksByBorrowedStatus(books)[0].length
-  
+  return booksFunctions.partitionBooksByBorrowedStatus(books)[0].length;
 }
 //* returns an array containing five objects or fewer that represents the most common occurring genres, ordered from most common to least.
 // *2nd solution - less ugly
@@ -64,7 +63,27 @@ function getMostPopularBooks(books) {
     .slice(0, 5);
 }
 
-function getMostPopularAuthors(books, authors) {}
+// *returns an array containing five objects or fewer that represents the most popular authors whose books have been borrowed the most.
+function getMostPopularAuthors(books, authors) {
+  let count = 0;
+  const idTotals = books.reduce((acc, { authorId, borrows }) => {
+    acc[authorId]
+      ? (count = acc[authorId].count + borrows.length)
+      : (count = borrows.length);
+    acc[authorId] = { name: authorId, count };
+    return acc;
+  }, []);
+
+  const idTotalsSorted = Object.values(idTotals)
+    .sort((a, b) => (a.count < b.count ? 1 : -1))
+    .slice(0, 5);
+
+  return idTotalsSorted.map((idTotal) => {
+    const findId = idTotal.name;
+    const name = booksFunctions.findAuthorById(authors, findId).name;
+    return { ...idTotal, name: `${name.first} ${name.last}` };
+  });
+}
 
 module.exports = {
   getTotalBooksCount,
