@@ -3,7 +3,6 @@ function returnAuthorById(authors, id) {
 }
 
 function partitionBooksByBorrowedStatus(books) {
-  // declare the two conditions as arrays so I only have to loop through books once and sort them into correct variable at the same time
   let unavailableBooks = [];
   let availableBooks = [];
   books.forEach((book) => {
