@@ -17,7 +17,7 @@ function getBooksBorrowedCount(books) {
   return booksFunctions.partitionBooksByBorrowedStatus(books)[0].length
   
 }
-
+//* returns an array containing five objects or fewer that represents the most common occurring genres, ordered from most common to least.
 // *2nd solution - less ugly
 function getMostCommonGenres(books) {
   let count = 0;
@@ -30,8 +30,7 @@ function getMostCommonGenres(books) {
     .sort((a, b) => (a.count < b.count ? 1 : -1))
     .slice(0, 5);
 }
-
-// *First solution - ugly
+// *1st solution - ugly
 // function getMostCommonGenres(books) {
 //   const topGenres = books.reduce((accumulator, { genre }) => {
 //     if (!accumulator.some(acc => acc.name === genre)) {
