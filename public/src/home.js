@@ -52,7 +52,17 @@ function getMostCommonGenres(books) {
 //   .slice(0, 5);
 // }
 
-function getMostPopularBooks(books) {}
+// *returns an array containing five objects or fewer that represents the most popular books in the library. Popularity is represented by the number of times a book has been borrowed.
+function getMostPopularBooks(books) {
+  const borrowedTotals = books.reduce((accumulator, { title, borrows }) => {
+    let count = borrows.length;
+    accumulator[title] = { name: title, count };
+    return accumulator;
+  }, []);
+  return Object.values(borrowedTotals)
+    .sort((a, b) => (a.count < b.count ? 1 : -1))
+    .slice(0, 5);
+}
 
 function getMostPopularAuthors(books, authors) {}
 
