@@ -17,8 +17,11 @@ function getBooksBorrowedCount(books) {
 function getMostCommonGenres(books) {
   let count = 0;
   const genreTotals = books.reduce((acc, { genre }) => {
-    acc[genre] ? (count = acc[genre].count + 1) : (count = 1);
-    acc[genre] = { name: genre, count };
+    count = acc[genre] ? acc[genre].count + 1 : 1;
+    acc[genre] = {
+      name: genre,
+      count,
+    };
     return acc;
   }, []);
   return helper.topFive(Object.values(genreTotals));
@@ -28,7 +31,10 @@ function getMostCommonGenres(books) {
 function getMostPopularBooks(books) {
   const borrowedTotals = books.reduce((accumulator, { title, borrows }) => {
     let count = borrows.length;
-    accumulator[title] = { name: title, count };
+    accumulator[title] = {
+      name: title,
+      count,
+    };
     return accumulator;
   }, []);
   return helper.topFive(Object.values(borrowedTotals));
@@ -38,10 +44,13 @@ function getMostPopularBooks(books) {
 function getMostPopularAuthors(books, authors) {
   let count = 0;
   const idTotals = books.reduce((acc, { authorId, borrows }) => {
-    acc[authorId]
-      ? (count = acc[authorId].count + borrows.length)
-      : (count = borrows.length);
-    acc[authorId] = { name: authorId, count };
+    count = acc[authorId]
+      ? acc[authorId].count + borrows.length
+      : borrows.length;
+    acc[authorId] = {
+      name: authorId,
+      count,
+    };
     return acc;
   }, []);
 
